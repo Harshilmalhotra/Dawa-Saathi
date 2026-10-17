@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["medicines", "doctor_notes_text", "patient_language_hint", "overall_legibility"],
+  "properties": {
+    "medicines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_text", "drug_name", "drug_name_conf", "strength", "strength_conf", "frequency_code", "frequency_conf", "as_needed", "food_timing", "food_timing_conf", "duration_days", "duration_conf"],
+        "properties": {
+          "source_text": {"type": "string"},
+          "drug_name": {"type": ["string", "null"]},
+          "drug_name_conf": {"type": "number", "minimum": 0, "maximum": 1},
+          "strength": {"type": ["string", "null"]},
+          "strength_conf": {"type": "number", "minimum": 0, "maximum": 1},
+          "frequency_code": {"type": ["string", "null"], "pattern": "^\\d+-\\d+-\\d+-\\d+$"},
+          "frequency_conf": {"type": "number", "minimum": 0, "maximum": 1},
+          "as_needed": {"type": "boolean"},
+          "food_timing": {"enum": ["before_food", "after_food", "with_food", "empty_stomach", "any", null]},
+          "food_timing_conf": {"type": "number", "minimum": 0, "maximum": 1},
+          "duration_days": {"type": ["integer", "null"], "minimum": 0},
+          "duration_conf": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "doctor_notes_text": {"type": "string"},
+    "patient_language_hint": {"enum": ["en", "hi", "mr", "unknown"]},
+    "overall_legibility": {"enum": ["good", "fair", "poor"]}
+  }
+}
