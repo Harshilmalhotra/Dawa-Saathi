@@ -10,9 +10,23 @@ type CaseStatus = 'uploaded' | 'extracting' | 'ai_ready' | 'patient_confirmed' |
 type MedicineRead = ScheduleMedicine & { source_text: string; drug_name_conf: number; strength_conf: number; frequency_conf: number; food_timing_conf: number; duration_conf: number; review_status: string };
 type CaseData = { case_id: string; access_code: string; status: CaseStatus; language: Language; medicines?: MedicineRead[]; doctor_notes_text?: string; schedule?: unknown[] };
 
-function Icon({ name }: { name: 'pill' | 'scan' | 'lock' | 'check' | 'clock' | 'arrow' | 'sun' | 'moon' }) {
+function Icon({ name }: { name: 'pill' | 'scan' | 'lock' | 'check' | 'clock' | 'arrow' | 'sun' | 'moon' | 'sun-cloud' | 'sunset' | 'meal' | 'calendar' | 'warning' | 'info' | 'eye' }) {
   const paths: Record<string, React.ReactNode> = {
-    pill: <><path d="m10.5 6.5 7 7"/><path d="M6.2 17.8a4.5 4.5 0 0 1 0-6.4l5.2-5.2a4.5 4.5 0 0 1 6.4 6.4l-5.2 5.2a4.5 4.5 0 0 1-6.4 0Z"/></>, scan: <><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><rect x="7" y="8" width="10" height="8" rx="2"/><path d="M9 12h6"/></>, lock: <><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3"/></>, check: <><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></>, clock: <><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></>, arrow: <><path d="M5 12h14M13 6l6 6-6 6"/></>, sun: <><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></>, moon: <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 8.5 8.5 0 1 0 20.5 14.5Z" />
+    pill: <><path d="m10.5 6.5 7 7"/><path d="M6.2 17.8a4.5 4.5 0 0 1 0-6.4l5.2-5.2a4.5 4.5 0 0 1 6.4 6.4l-5.2 5.2a4.5 4.5 0 0 1-6.4 0Z"/></>,
+    scan: <><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><rect x="7" y="8" width="10" height="8" rx="2"/><path d="M9 12h6"/></>,
+    lock: <><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3"/></>,
+    check: <><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></>,
+    clock: <><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></>,
+    arrow: <><path d="M5 12h14M13 6l6 6-6 6"/></>,
+    sun: <><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></>,
+    moon: <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 8.5 8.5 0 1 0 20.5 14.5Z" />,
+    'sun-cloud': <><circle cx="16" cy="8" r="3"/><path d="M16 2v2m5 4h-2M5 17a4 4 0 0 1 .8-7.9A5.5 5.5 0 0 1 16.5 11H17a3 3 0 1 1 0 6Z"/></>,
+    sunset: <><path d="M3 17h18M5 21h14M7 17a5 5 0 0 1 10 0M12 3v2m-7 2 1.5 1.5M19 7l-1.5 1.5"/></>,
+    meal: <><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M3 4v6m-2-6v3m4-3v3m-2 3v9m18-15v15m0-15c-2 2-2 5 0 7"/></>,
+    calendar: <><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18m-13 4h2m4 0h2m-8 4h2"/></>,
+    warning: <><path d="m10.3 4.3-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-2.7l-8-14a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4m0 4h.01"/></>,
+    info: <><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></>,
+    eye: <><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="2.5"/></>
   };
   return <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>;
 }
@@ -49,13 +63,21 @@ function Status({ t }: { t: Record<string, string> }) { const { code: routeCode 
 function statusLabel(status: CaseStatus, t: Record<string,string>) { return ({uploaded:t.uploaded,extracting:t.reading,ai_ready:'AI reading ready',patient_confirmed:'Reading acknowledged',failed:t.failed} as Record<CaseStatus,string>)[status]??status; }
 function statusHelp(status: CaseStatus, t: Record<string,string>) { return ({uploaded:'Your photos are received.',extracting:'AI is reading the uploaded prescription.',ai_ready:'Review the transcription against your original prescription before using it.',patient_confirmed:'You acknowledged the AI transcription. It has not been checked by a clinician.',failed:'The AI transcription did not complete.'} as Record<CaseStatus,string>)[status]??t.waiting; }
 
-function formatTimeSlots(code: string, language: Language) {
-  const labels: Record<Language, string[]> = {
-    en: ['Morning', 'Afternoon', 'Evening', 'Night'],
-    hi: ['सुबह', 'दोपहर', 'शाम', 'रात'],
-    mr: ['सकाळ', 'दुपार', 'संध्याकाळ', 'रात्र']
-  };
-  return code.split('-').map((amount, index) => Number(amount) > 0 ? `${labels[language][index]}: ${amount}` : '').filter(Boolean).join(' · ') || '—';
+const doseSlotInfo = [
+  { icon: 'sun' as const, labels: { en: 'Morning', hi: 'सुबह', mr: 'सकाळ' } },
+  { icon: 'sun-cloud' as const, labels: { en: 'Afternoon', hi: 'दोपहर', mr: 'दुपार' } },
+  { icon: 'sunset' as const, labels: { en: 'Evening', hi: 'शाम', mr: 'संध्याकाळ' } },
+  { icon: 'moon' as const, labels: { en: 'Night', hi: 'रात', mr: 'रात्र' } },
+];
+
+function DoseSlots({ code, language }: { code: string; language: Language }) {
+  const amounts = code.split('-');
+  return <div className="dose-slot-grid">{doseSlotInfo.map((slot, index) => {
+    const amount = Number(amounts[index] ?? 0);
+    return <div className={`dose-slot ${amount > 0 ? 'dose-slot-active' : ''}`} key={slot.labels.en}>
+      <Icon name={slot.icon}/><span className="dose-slot-label">{slot.labels[language]}</span><strong>{amount > 0 ? amount : '—'}</strong>
+    </div>;
+  })}</div>;
 }
 
 function AiReading({ data, onConfirmed, t }: { data: CaseData; onConfirmed: () => void; t: Record<string,string> }) {
@@ -77,7 +99,12 @@ function AiReading({ data, onConfirmed, t }: { data: CaseData; onConfirmed: () =
     <div className="alert alert-demo"><b>AI transcription — not medically verified.</b> Compare each detail with the original prescription. Missing or unclear information is left blank.</div>
     <div className="verified-heading"><span className="verified-badge"><Icon name="scan"/> AI TRANSCRIPTION</span><h2>What the photo appears to say</h2><p>The confidence scores describe the AI’s reading, not whether a medicine instruction is correct.</p></div>
     {medicines.length ? <div className="review-medicines">{medicines.map((medicine,index) => <article className="panel medicine-review" key={medicine.id}>
-      <div className="medicine-review-heading"><span className="eyebrow">MEDICINE {index + 1} · {medicine.review_status === 'auto_ok' ? t.clearRead : t.review}</span><h3>{medicine.drug_name || t.medicineName}</h3></div>
+      <div className="medicine-review-top">
+        <span className="medicine-number-icon"><Icon name="pill"/></span>
+        <div className="medicine-review-heading"><span className="eyebrow">MEDICINE {String(index + 1).padStart(2, '0')}</span><h3>{medicine.drug_name || t.medicineName}</h3></div>
+        <span className={`review-state ${medicine.review_status === 'auto_ok' ? 'review-state-clear' : 'review-state-check'}`}><Icon name={medicine.review_status === 'auto_ok' ? 'check' : 'warning'}/>{medicine.review_status === 'auto_ok' ? t.clearRead : t.review}</span>
+      </div>
+      <div className="confidence-heading"><span>AI reading confidence</span><details className="confidence-help"><summary><Icon name="info"/> What is this?</summary><p>Confidence estimates how clearly the AI read the writing. It does not confirm that a medicine or instruction is medically correct.</p></details></div>
       <div className="confidence-list">
         <Confidence label={t.medicineName} value={medicine.drug_name_conf}/>
         <Confidence label={t.strength} value={medicine.strength_conf}/>
@@ -85,14 +112,17 @@ function AiReading({ data, onConfirmed, t }: { data: CaseData; onConfirmed: () =
         <Confidence label={t.foodTiming} value={medicine.food_timing_conf}/>
         <Confidence label={t.duration} value={medicine.duration_conf}/>
       </div>
-      <div className="patient-reading">
-        <span>{t.strength}: {medicine.strength || t.notClear}</span>
-        <span>{t.times}: {medicine.as_needed ? t.onlyNeeded : medicine.frequency_code ? formatTimeSlots(medicine.frequency_code, data.language) : t.notClear}</span>
-        <span>{t.foodTiming}: {medicine.food_timing ? (foodLabels[medicine.food_timing] || t.notClear) : t.notClear}</span>
-        <span>{t.duration}: {medicine.duration_days ? `${medicine.duration_days} days` : t.notClear}</span>
+      <div className="reading-grid">
+        <div className="reading-tile"><div className="reading-tile-title"><span className="reading-icon"><Icon name="pill"/></span><span>{t.strength}</span></div><strong className={!medicine.strength ? 'reading-unknown' : ''}>{medicine.strength || t.notClear}</strong></div>
+        <div className="reading-tile"><div className="reading-tile-title"><span className="reading-icon"><Icon name="meal"/></span><span>{t.foodTiming}</span></div><strong className={!medicine.food_timing ? 'reading-unknown' : ''}>{medicine.food_timing ? (foodLabels[medicine.food_timing] || t.notClear) : t.notClear}</strong></div>
+        <div className="reading-tile"><div className="reading-tile-title"><span className="reading-icon"><Icon name="calendar"/></span><span>{t.duration}</span></div><strong className={!medicine.duration_days ? 'reading-unknown' : ''}>{medicine.duration_days ? `${medicine.duration_days} days` : t.notClear}</strong></div>
+        <div className="reading-tile reading-tile-wide"><div className="reading-tile-title"><span className="reading-icon"><Icon name="sun"/></span><span>{t.times}</span></div>
+          {medicine.as_needed ? <strong>{t.onlyNeeded}</strong> : medicine.frequency_code ? <DoseSlots code={medicine.frequency_code} language={data.language}/> : <strong className="reading-unknown">{t.notClear}</strong>}
+        </div>
       </div>
-      {medicine.review_status !== 'auto_ok' && <div className="alert alert-error">Some details could not be read clearly. This is only a draft; do not use it as medicine instructions. Check with the prescribing clinician.</div>}
-    </article>)}</div> : <div className="alert alert-error">No medicine details could be read. Do not use this result as medicine instructions.</div>}
+      {medicine.source_text && <details className="source-details"><summary><Icon name="eye"/> See the text the AI read</summary><p>{medicine.source_text}</p></details>}
+      {medicine.review_status !== 'auto_ok' && <div className="alert alert-error reading-warning"><Icon name="warning"/><span>Some details could not be read clearly. This is only a draft, not medicine instructions. Check it with the clinician who prescribed it.</span></div>}
+    </article>)}</div> : <div className="alert alert-error reading-warning"><Icon name="warning"/><span>No medicine details could be read. Do not use this result as medicine instructions.</span></div>}
     {data.doctor_notes_text && <div className="panel notes-panel"><h3>Words also read from the prescription</h3><p>{data.doctor_notes_text}</p><small>This is copied from the image, not AI-generated advice.</small></div>}
     {medicines.length > 0 && !clear && <div className="alert alert-error">At least one medicine needs checking, so a schedule cannot be created.</div>}
     {clear && <div className="self-confirm"><label className="consent-row"><input type="checkbox" checked={ack} onChange={e => setAck(e.target.checked)}/><span><b>I compared these details with my original prescription.</b><small>This confirms only that you reviewed the AI draft; it is not pharmacist or clinician verification.</small></span></label>{error && <div className="alert alert-error" role="alert">{error}</div>}<button className="button button-primary full-button" disabled={!ack || busy} onClick={() => void confirm()}>{busy ? 'Saving…' : 'I checked it — show my schedule'} <Icon name="arrow"/></button></div>}
@@ -102,7 +132,7 @@ function AiReading({ data, onConfirmed, t }: { data: CaseData; onConfirmed: () =
 function Schedule({data,lang}:{data:CaseData;lang:Language}) { const words=strings[lang];const medicines=data.medicines??[];const needed=medicines.filter(m=>m.as_needed);return <section className="verified-schedule"><div className="verified-heading"><span className="verified-badge"><Icon name="check"/> AI READING ACKNOWLEDGED BY YOU</span><h2>Your daily schedule</h2><p>This schedule is based on the AI transcription you acknowledged, not clinician verification.</p></div><div className="alert alert-demo">Compare with your prescription. If any value looks different or unclear, do not rely on this schedule; contact the prescribing clinician.</div><div className="schedule">{[0,1,2,3].map(i=><ScheduleCard key={i} slotIndex={i} medicines={medicines} lang={lang} words={words}/>)}</div>{needed.length>0&&<section className="card needed-card"><h3>{words.onlyNeeded}</h3>{needed.map(m=><p key={m.id}><Icon name="pill"/> {m.drug_name}{m.strength?` · ${m.strength}`:''}</p>)}</section>}<div className="schedule-actions"><button className="button button-secondary" onClick={()=>window.print()}>{words.print}</button><TelegramConnect caseId={data.case_id} t={words}/></div><footer className="safety-footer">{words.aid}</footer></section>; }
 
 function TelegramConnect({caseId,t}:{caseId:string;t:Record<string,string>}) { const [url,setUrl]=useState('');const [error,setError]=useState('');const [busy,setBusy]=useState(false);const connect=async()=>{setBusy(true);setError('');try{const result=await api<{url:string}>(`/cases/${caseId}/telegram-link`,{method:'POST'});setUrl(result.url);}catch(e){setError(e instanceof Error?e.message:'Telegram reminders are not configured.');}finally{setBusy(false);}};return <div className="telegram-box"><div><b>Optional Telegram reminders</b><small>Reminders use the timing read from this AI transcription.</small>{error&&<span className="inline-error" role="status">{error}</span>}</div>{url?<a className="button button-primary button-small" href={url} target="_blank" rel="noreferrer">{t.openTelegram}<Icon name="arrow"/></a>:<button className="button button-secondary button-small" onClick={()=>void connect()} disabled={busy}>{busy?'Connecting…':t.telegram}</button>}</div>; }
-function Confidence({label,value=0}:{label:string;value:number}) { const tone=value>=0.8?'high':value>=0.5?'medium':'low';return <span className={`confidence ${tone}`}><i/> {label} {Math.round(value*100)}%</span>; }
+function Confidence({label,value=0}:{label:string;value:number}) { const tone=value>=0.8?'high':value>=0.5?'medium':'low';return <span className={`confidence ${tone}`} title={`${label}: AI reading confidence ${Math.round(value*100)}%`}><Icon name={tone==='high'?'check':'warning'}/><span>{label} <b>{Math.round(value*100)}%</b></span></span>; }
 
 function App() { const [lang,setLang]=useState<Language>((localStorage.getItem('dawa-language') as Language)||'en');const t=strings[lang];const changeLang=(next:Language)=>{setLang(next);localStorage.setItem('dawa-language',next);};return <BrowserRouter><Header lang={lang} setLang={changeLang}/><Routes><Route path="/" element={<Home t={t}/>} /><Route path="/upload" element={<Upload lang={lang} t={t}/>} /><Route path="/status" element={<Status t={t}/>} /><Route path="/case/:code" element={<Status t={t}/>} /><Route path="*" element={<main className="page-shell inner-page"><h1>Page not found</h1><Link to="/">Return home</Link></main>} /></Routes><footer className="global-footer"><span>Dawa Saathi · AI prescription transcription</span><span>AI reads. You review.</span></footer></BrowserRouter>; }
 
